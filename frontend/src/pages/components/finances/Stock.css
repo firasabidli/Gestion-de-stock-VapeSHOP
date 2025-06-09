@@ -1,0 +1,21 @@
+.ba-dge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.badge-stock {
+  background-color: #d9fbe8;
+  color: #259f65;
+}
+
+.badge-faible {
+  background-color: #fff4cd;
+  color: #d1a700;
+}
+
+.badge-rupture {
+  background-color: #ffdbe2;
+  color: #d1193e;
+}

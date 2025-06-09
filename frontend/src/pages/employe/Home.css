@@ -1,0 +1,193 @@
+/* clock css */
+/* Google fonts import link */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+*{
+ 
+  box-sizing: border-box;
+ 
+  transition: all 0.4s ease;
+}
+sec-tion{
+  
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  padding: 20px 20px;
+}
+
+sec-tion .contain-er{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 220px;
+  max-width: 560px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  position: relative;
+}
+
+
+
+.contain-er .icons i.fa-sun{
+  opacity: 0;
+  pointer-events: none;
+}
+
+sec-tion .contain-er .time{
+  display: flex;
+  align-items: center;
+}
+.contain-er .time .time-colon{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.time .time-colon .am_pm{
+  position: absolute;
+  top: 0;
+  right: -50px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.time .time-colon .time-text{
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: #F0F8FF;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.time .time-colon .time-text,
+.time .time-colon .colon{
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.time .time-colon .colon{
+  font-size: 40px;
+  margin: 0 10px;
+}
+.time .time-colon .time-text .text{
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.time-container {
+  text-align: center;
+}
+
+.date-text {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+
+@media (max-width: 768px) {
+  .contain-er {
+    height: auto;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .time .time-colon .colon {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .time .time-colon .time-text {
+    height: 80px;
+    width: 80px;
+  }
+
+  .time .time-colon .colon {
+    font-size: 30px;
+    margin: 5px 0;
+  }
+
+  .time .time-colon .time-text .text {
+    font-size: 10px;
+  }
+
+  .time .time-colon .time-text,
+  .time .time-colon .colon {
+    font-size: 28px;
+  }
+
+  .time .time-colon .am_pm {
+    font-size: 16px;
+    right: -40px;
+  }
+
+  .date-text {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .time .time-colon .time-text {
+    height: 60px;
+    width: 60px;
+  }
+
+  .time .time-colon .colon {
+    font-size: 24px;
+    margin: 3px 0;
+  }
+
+  .time .time-colon .time-text,
+  .time .time-colon .colon {
+    font-size: 22px;
+  }
+
+  .time .time-colon .time-text .text {
+    font-size: 9px;
+  }
+
+  .time .time-colon .am_pm {
+    font-size: 14px;
+    right: -30px;
+  }
+
+  .date-text {
+    font-size: 16px;
+  }
+}
+
+
+/* end clock css */
+
+.car-ds {
+    margin: 5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.-icons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+   width: 150px;
+   height: 150px;
+}
+
+/* Tu peux personnaliser les breakpoints si nécessaire */
+@media (max-width: 600px) {
+  .car-ds {
+    grid-template-columns: 1fr; /* Une seule carte sur téléphone */
+  }
+}
