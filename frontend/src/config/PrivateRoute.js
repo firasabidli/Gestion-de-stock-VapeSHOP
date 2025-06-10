@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/auth/me', { withCredentials: true })
+    axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/auth/me', { withCredentials: true })
       .then(res => {
         const user = res.data;
         if (user.role === 'vendeur' || user.role === 'admin') {

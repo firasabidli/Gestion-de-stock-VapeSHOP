@@ -11,7 +11,7 @@ const AppNavbar = () => {
 const [user, setUser] = useState([]);
   const fetchUser = async () => {
     try {
-        const response = await axios.get('http://localhost:5000/api/settings/profile', {
+        const response = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/settings/profile', {
        withCredentials: true,
     });
       setUser(response.data);
@@ -27,7 +27,7 @@ const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    axios.post('http://localhost:5000/auth/logout', {}, { withCredentials: true });
+    axios.post('https://gestion-de-stock-vape-shop-api.vercel.app/auth/logout', {}, { withCredentials: true });
 
      
     navigate('/');

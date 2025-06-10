@@ -19,9 +19,9 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/auth/login', { email, password }, { withCredentials: true });
+      await axios.post('https://gestion-de-stock-vape-shop-api.vercel.app/auth/login', { email, password }, { withCredentials: true });
 
-      const me = await axios.get('http://localhost:5000/api/auth/me', { withCredentials: true });
+      const me = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/auth/me', { withCredentials: true });
       const role = me.data.role;
 
       setMessage('Connexion réussie');

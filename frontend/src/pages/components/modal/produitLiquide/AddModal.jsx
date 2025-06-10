@@ -18,7 +18,7 @@ const AddModal = ({ show, handleClose, OnAdd }) => {
   e.preventDefault();
   try {
     
-    await axios.post('http://localhost:5000/api/produits', form, {
+    await axios.post('https://gestion-de-stock-vape-shop-api.vercel.app/api/produits', form, {
        withCredentials: true,
     });
 

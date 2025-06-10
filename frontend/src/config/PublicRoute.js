@@ -7,7 +7,7 @@ function PublicRoute({ children }) {
   const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/auth/me', { withCredentials: true })
+    axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/auth/me', { withCredentials: true })
       .then(res => {
         setUserRole(res.data.role); // On récupère le rôle de l'utilisateur
         setLoading(false);
