@@ -21,8 +21,8 @@ exports.login = async (req, res) => {
 
   res.cookie('token', token, {
     httpOnly: true,
-    secure: true, // ⚠️ Mettre false en local sans HTTPS
-    sameSite: 'Strict',
+    secure: true, // 
+    sameSite: 'None',
     maxAge: 3600000, // 1 heure
   });
 
