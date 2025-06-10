@@ -74,7 +74,8 @@ if(!existAdmin){
         name:'Admin',
         email:'raedtouati2550@gmail.com',
         password: HashedPassword,
-        role: 'admin'
+        role: 'admin',
+        salaire: 0,
     });
     await adminUser.save();
     console.log('Admin creer');
