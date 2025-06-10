@@ -32,9 +32,14 @@ exports.login = async (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+  });
   res.json({ message: 'Déconnexion réussie' });
 };
+
 
 exports.createUser = async (req, res) => {
   try {

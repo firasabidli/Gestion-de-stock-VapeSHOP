@@ -26,12 +26,20 @@ const [user, setUser] = useState([]);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    axios.post('https://gestion-de-stock-vape-shop-api.vercel.app/auth/logout', {}, { withCredentials: true });
+ const handleLogout = async () => {
+  try {
+    await axios.post(
+      'https://gestion-de-stock-vape-shop-api.vercel.app/auth/logout',
+      {},
+      { withCredentials: true }
+    );
 
-     
     navigate('/');
-  };
+  } catch (err) {
+    console.error('Erreur lors de la déconnexion', err);
+  }
+};
+
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };

@@ -14,12 +14,20 @@ const Sidebar = ({ isActive }) => {
 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    axios.post('https://gestion-de-stock-vape-shop-api.vercel.app/auth/logout', {}, { withCredentials: true });
+ const handleLogout = async () => {
+  try {
+    await axios.post(
+      'https://gestion-de-stock-vape-shop-api.vercel.app/auth/logout',
+      {},
+      { withCredentials: true }
+    );
 
-     
     navigate('/');
-  };
+  } catch (err) {
+    console.error('Erreur lors de la déconnexion', err);
+  }
+};
+
 
   return (
     <div className={`sidebar ${isActive ? 'active' : ''}`}>
