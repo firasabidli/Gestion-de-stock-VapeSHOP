@@ -32,7 +32,7 @@ app.use(cookieParser());
 
 
 app.use(cors({
-  origin: 'http://localhost:3000', // ton frontend
+  origin: 'https://viking-vape.vercel.app',
   credentials: true
 }));
 
