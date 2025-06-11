@@ -19,11 +19,16 @@ function PublicRoute({ children }) {
       });
   }, []);
 
-  if (loading) return <div>
+  if (loading) {
+  return (
+    <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
       <Spinner animation="border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
-    </div>;
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    </div>
+  );
+}
+
 
   if (userRole) {
     // Si admin, redirige vers dashboard admin, sinon vers home
