@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
+import Spinner from 'react-bootstrap/Spinner';
 
 const PrivateRouteAdmin = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -24,7 +25,11 @@ const PrivateRouteAdmin = ({ children }) => {
   }, []);
 
   if (loading) {
-    return <div>Chargement...</div>; // ou un spinner
+    return <div>
+      <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+    </div>;
   }
 
   if (!isAdmin) {

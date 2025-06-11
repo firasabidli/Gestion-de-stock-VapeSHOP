@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
+import Spinner from 'react-bootstrap/Spinner';
 
 function PublicRoute({ children }) {
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,11 @@ function PublicRoute({ children }) {
       });
   }, []);
 
-  if (loading) return <div>Chargement...</div>;
+  if (loading) return <div>
+      <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+    </div>;
 
   if (userRole) {
     // Si admin, redirige vers dashboard admin, sinon vers home
