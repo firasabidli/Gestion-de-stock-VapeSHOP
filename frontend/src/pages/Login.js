@@ -16,27 +16,33 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post('https://gestion-de-stock-vape-shop-api.vercel.app/auth/login', { email, password }, { withCredentials: true });
+ const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post(
+      'https://gestion-de-stock-vape-shop-api.vercel.app/auth/login',
+      { email, password },
+      { withCredentials: true }
+    );
 
-      const me = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/auth/me', { withCredentials: true });
-      const role = me.data.role;
+    const role = response.data.user.role;
 
-      setMessage('Connexion réussie');
-      setAlertVariant('success');
-      setShowAlert(true);
+    setMessage(response.data.message); // message: 'Connexion réussie'
+    setAlertVariant('success');
+    setShowAlert(true);
 
-      if (role === 'admin') navigate('/admin/dashboard');
-      else if (role === 'vendeur') navigate('/home');
-      else navigate('/');
-    } catch (err) {
-      setMessage('Erreur de connexion');
-      setAlertVariant('danger');
-      setShowAlert(true);
-    }
-  };
+    if (role === 'admin') navigate('/admin/dashboard');
+    else if (role === 'vendeur') navigate('/home');
+    else navigate('/');
+    
+  } catch (err) {
+    const errorMessage = err.response?.data?.message || 'Erreur de connexion';
+    setMessage(errorMessage);
+    setAlertVariant('danger');
+    setShowAlert(true);
+  }
+};
+
 
   return (
     <div className="wrapper">
