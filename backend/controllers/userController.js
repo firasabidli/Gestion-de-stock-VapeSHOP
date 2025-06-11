@@ -8,10 +8,10 @@ const jwt = require('jsonwebtoken');
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (!user) return res.status(401).json({ message: 'Identifiants invalides' });
+  if (!user) return res.status(401).json({ message: 'Email invalides' });
 
   const valid = await bcrypt.compare(password, user.password);
-  if (!valid) return res.status(401).json({ message: 'Identifiants invalides' });
+  if (!valid) return res.status(401).json({ message: 'Mot de passe invalides' });
 
   const token = jwt.sign(
     { id: user._id, role: user.role },
