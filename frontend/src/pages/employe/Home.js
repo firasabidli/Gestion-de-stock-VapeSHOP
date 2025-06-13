@@ -40,11 +40,8 @@ const Home = () => {
 
 const fetchServices = async () => {
     try {
-       const token = localStorage.getItem('token'); // ou sessionStorage selon ton choix
-      const response = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/services', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+         const response = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/services', {
+      withCredentials: true,
     });
       setServices(response.data);
     } catch (err) {
@@ -53,11 +50,9 @@ const fetchServices = async () => {
   };
 const fetchLiquide = async () => {
   try {
-    const token = localStorage.getItem('token');
+    
     const response = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/liquides/filter', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      withCredentials: true,
     });
 
     const {
@@ -81,11 +76,9 @@ const fetchLiquide = async () => {
 
 const fetchAccessoires = async () => {
     try {
-       const token = localStorage.getItem('token'); // ou sessionStorage selon ton choix
+       
       const response = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/accessoires', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      withCredentials: true,
     });
       setAccessoires(response.data);
     } catch (err) {
@@ -94,11 +87,9 @@ const fetchAccessoires = async () => {
   };
 const fetchVapes = async () => {
     try {
-       const token = localStorage.getItem('token'); // ou sessionStorage selon ton choix
+       
       const response = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/vapes', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      withCredentials: true,
     });
       setVapes(response.data);
     } catch (err) {
