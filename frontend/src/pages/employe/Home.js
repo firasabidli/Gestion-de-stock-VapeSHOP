@@ -40,7 +40,31 @@ const Home = () => {
     const [produits, setProduits] = useState({
   vapes: { totalProduits: 0, quantiteStock: 0, quantiteVendue: 0 },
   accessoires: { totalProduits: 0, quantiteStock: 0, quantiteVendue: 0 },
-  liquides: { totalProduits: 0, quantiteStock: 0, quantiteVendue: 0 },
+  liquides: {
+  totalProduits: 0,
+  quantiteStock: 0,
+  quantiteVendue: 0,
+  bouteilleGourmand: {
+    totalProduits: 0,
+    quantiteStock: 0,
+    quantiteVendue: 0
+  },
+  bouteilleFruite: {
+    totalProduits: 0,
+    quantiteStock: 0,
+    quantiteVendue: 0
+  },
+  doseGourmand: {
+    totalProduits: 0,
+    quantiteStock: 0,
+    quantiteVendue: 0
+  },
+  doseFruite: {
+    totalProduits: 0,
+    quantiteStock: 0,
+    quantiteVendue: 0
+  }
+},
 });
 
 
@@ -158,7 +182,7 @@ const fetchstatistique = async () => {
                             <img src={accessoireIcon} className="-icons" alt="Accessoire Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.accessoires.quantiteVendue + produits.vapes.quantiteStock}</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.accessoires.quantiteVendue + produits.accessoires.quantiteStock}</span>
                             <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.accessoires.quantiteVendue}</span>
                             <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.accessoires.quantiteStock}</span>
                         </div>
@@ -188,15 +212,15 @@ const fetchstatistique = async () => {
                     <div class="card card-2" onClick={() => setShowLiquideBFModal(true)}>
                         <div class="card--data">
                             <div class="card--content">
-                                <h5 class="card--title">Fruité</h5>
-                                <h1>152</h1>
+                                <h5 class="card--title">Liste Fruité</h5>
+                               <h1>{produits.liquides.bouteilleFruite.totalProduits}</h1>
                             </div>
                             <img src={fruiteBIcon} className="-icons" alt="Vape Icon" />
                         </div>
-                        <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>65%</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>10</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i>2</span>
+                       <div class="card--stats">
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides.bouteilleFruite.quantiteVendue + produits.liquides.bouteilleFruite.quantiteStock}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides.bouteilleFruite.quantiteVendue}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides.bouteilleFruite.quantiteStock}</span>
                         </div>
                     </div>
                     <VenteLiquideBFModal show={showLiquideBFModal} liquides={liquideFruite} onHide={() => setShowLiquideBFModal(false)} OnVente={fetchLiquide}/>
@@ -204,15 +228,15 @@ const fetchstatistique = async () => {
                     <div class="card card-2" onClick={() => setShowLiquideBGModal(true)}>
                         <div class="card--data">
                             <div class="card--content">
-                                <h5 class="card--title">Gourmand</h5>
-                                <h1>1145</h1>
+                                <h5 class="card--title">Liste Gourmand</h5>
+                                 <h1>{produits.liquides.bouteilleGourmand.totalProduits}</h1>
                             </div>
                             <img src={gourmandBIcon} className="-icons" alt="Liquide Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>82%</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>230</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i>45</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides.bouteilleGourmand.quantiteVendue + produits.liquides.bouteilleGourmand.quantiteStock}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides.bouteilleGourmand.quantiteVendue}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides.bouteilleGourmand.quantiteStock}</span>
                         </div>
                     </div>
                     <VenteLiquideBGModal show={showLiquideBGModal} liquides={liquideGourmand} onHide={() => setShowLiquideBGModal(false)} OnVente={fetchLiquide}/>
@@ -226,14 +250,14 @@ const fetchstatistique = async () => {
                         <div class="card--data">
                             <div class="card--content">
                                 <h5 class="card--title">Fruité</h5>
-                                <h1>152</h1>
+                                 <h1>{produits.liquides.doseFruite.totalProduits}</h1>
                             </div>
                             <img src={fruiteIcon} className="-icons" alt="Vape Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>65%</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>10</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i>2</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides.doseFruite.quantiteVendue + produits.liquides.doseFruite.quantiteStock}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides.doseFruite.quantiteVendue}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides.doseFruite.quantiteStock}</span>
                         </div>
                     </div>
                     <VenteLiquideDFModal show={showLiquideDFModal} liquides={fruiteDose} onHide={() => setShowLiquideDFModal(false)} OnVente={fetchLiquide}/>
@@ -242,14 +266,14 @@ const fetchstatistique = async () => {
                         <div class="card--data">
                             <div class="card--content">
                                 <h5 class="card--title">Gourmand</h5>
-                                <h1>1145</h1>
+                                 <h1>{produits.liquides.doseGourmand.totalProduits}</h1>
                             </div>
                             <img src={gourmandIcon} className="-icons" alt="Liquide Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>82%</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>230</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i>45</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides.doseGourmand.quantiteVendue + produits.liquides.doseGourmand.quantiteStock}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides.doseGourmand.quantiteVendue}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides.doseGourmand.quantiteStock}</span>
                         </div>
                     </div>
                     <VenteLiquideDGModal show={showLiquideDGModal} liquides={gourmandDose} onHide={() => setShowLiquideDGModal(false)} OnVente={fetchLiquide}/>
