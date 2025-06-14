@@ -15,7 +15,7 @@ const Dashboard = () => {
   const toggleSidebar = () => {
     setSidebarActive(prev => !prev);
   };
- const fetchAccessoires = async () => {
+ const fetchstatistique = async () => {
     try {
      const response = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/statistiques/nbProduits', {
        withCredentials: true,
@@ -27,7 +27,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetchAccessoires();
+    fetchstatistique();
   }, []);
   return (
     <>

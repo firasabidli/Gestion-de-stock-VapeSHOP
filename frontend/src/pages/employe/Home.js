@@ -37,6 +37,7 @@ const Home = () => {
     const [liquideGourmand, setLiquideGourmand] = useState([]);
     const [gourmandDose, setGourmandDose] = useState([]);
     const [fruiteDose, setFruiteDose] = useState([]);
+    const [produits, setProduits] = useState([]);
 
 const fetchServices = async () => {
     try {
@@ -96,12 +97,23 @@ const fetchVapes = async () => {
       console.error('Erreur lors du chargement des vapes', err);
     }
   };
-
+const fetchstatistique = async () => {
+    try {
+     const response = await axios.get('https://gestion-de-stock-vape-shop-api.vercel.app/api/statistiques/nbProduits', {
+       withCredentials: true,
+    });
+      setProduits(response.data);
+      console.log(response.data);
+    } catch (err) {
+      console.error('Erreur lors du chargement des accessoires', err);
+    }
+  };
   useEffect(() => {
     fetchVapes();
     fetchLiquide();
     fetchAccessoires();
     fetchServices();
+    fetchstatistique();
   }, []);
   return (
     <>
