@@ -37,7 +37,12 @@ const Home = () => {
     const [liquideGourmand, setLiquideGourmand] = useState([]);
     const [gourmandDose, setGourmandDose] = useState([]);
     const [fruiteDose, setFruiteDose] = useState([]);
-    const [produits, setProduits] = useState([]);
+    const [produits, setProduits] = useState({
+  vapes: { totalProduits: 0, quantiteStock: 0, quantiteVendue: 0 },
+  accessoires: { totalProduits: 0, quantiteStock: 0, quantiteVendue: 0 },
+  liquides: { totalProduits: 0, quantiteStock: 0, quantiteVendue: 0 },
+});
+
 
 const fetchServices = async () => {
     try {
