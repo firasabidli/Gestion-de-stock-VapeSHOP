@@ -152,15 +152,15 @@ const fetchstatistique = async () => {
                     <div class="card card-3" onClick={() => setShowAccessoireModal(true)}>
                         <div class="card--data">
                             <div class="card--content">
-                                <h5 class="card--title">Accessoires</h5>
-                                <h1>102</h1>
+                                <h5 class="card--title">Liste Accessoires</h5>
+                               <h1>{produits.accessoires.totalProduits}</h1>
                             </div>
                             <img src={accessoireIcon} className="-icons" alt="Accessoire Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>27%</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>31</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i>23</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.accessoires.quantiteVendue + produits.vapes.quantiteStock}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.accessoires.quantiteVendue}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.accessoires.quantiteStock}</span>
                         </div>
                     </div>
                     <VenteAccessoireModal show={showAccessoireModal} accessoires={accessoires} onHide={() => setShowAccessoireModal(false)} OnVente={fetchAccessoires} />

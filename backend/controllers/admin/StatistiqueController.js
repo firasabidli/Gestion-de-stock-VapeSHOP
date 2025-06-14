@@ -43,61 +43,88 @@ exports.getStat = async (req, res) => {
 };
 
 exports.getStatistiques = async (req, res) => {
-   try {
-
-    // Comptage des produits
+  try {
+    // Comptage total
     const [nbVapes, nbLiquides, nbAccessoires] = await Promise.all([
       Vape.countDocuments(),
       Liquide.countDocuments(),
       Accessoire.countDocuments()
     ]);
 
-    // Quantité en stock
+    // Stock total
     const [stockVape, stockLiquide, stockAccessoire] = await Promise.all([
       Vape.aggregate([{ $group: { _id: null, total: { $sum: "$quantite" } } }]),
       Liquide.aggregate([{ $group: { _id: null, total: { $sum: "$quantite" } } }]),
       Accessoire.aggregate([{ $group: { _id: null, total: { $sum: "$quantite" } } }])
     ]);
 
-    // Quantité vendue par type dans le modèle Vente
+    // Sous-catégories de liquides : stock
+    const sousCategories = [
+      { type: 'bouteille', categorie: 'gourmand' },
+      { type: 'bouteille', categorie: 'fruité' },
+      { type: 'dose', categorie: 'gourmand' },
+      { type: 'dose', categorie: 'fruité' },
+    ];
+
+    const stockLiquideParCategorie = {};
+
+    for (const sc of sousCategories) {
+      const count = await Liquide.countDocuments({ type: sc.type, categorie: sc.categorie });
+      const stock = await Liquide.aggregate([
+        { $match: { type: sc.type, categorie: sc.categorie } },
+        { $group: { _id: null, total: { $sum: "$quantite" } } }
+      ]);
+
+      const key = `${sc.type}${sc.categorie.charAt(0).toUpperCase()}${sc.categorie.slice(1)}`;
+      stockLiquideParCategorie[key] = {
+        totalProduits: count,
+        quantiteStock: stock[0]?.total || 0
+      };
+    }
+
+    // Vente par type simple
     const [venteVape, venteLiquide, venteAccessoire] = await Promise.all([
-      Vente.aggregate([
-        { $match: { type: "vapes" } },
-        { $group: { _id: null, total: { $sum: "$quantite" } } }
-      ]),
-      Vente.aggregate([
-        { $match: { type: "liquides" } },
-        { $group: { _id: null, total: { $sum: "$quantite" } } }
-      ]),
-      Vente.aggregate([
-        { $match: { type: "accessoires" } },
-        { $group: { _id: null, total: { $sum: "$quantite" } } }
-      ])
+      Vente.aggregate([{ $match: { type: "vapes" } }, { $group: { _id: null, total: { $sum: "$quantite" } } }]),
+      Vente.aggregate([{ $match: { type: "liquides" } }, { $group: { _id: null, total: { $sum: "$quantite" } } }]),
+      Vente.aggregate([{ $match: { type: "accessoires" } }, { $group: { _id: null, total: { $sum: "$quantite" } } }])
     ]);
+
+    // Vente par sous-catégorie liquide
+    for (const sc of sousCategories) {
+      const vente = await Vente.aggregate([
+        { $match: { type: "liquides", sousType: sc.type, categorie: sc.categorie } },
+        { $group: { _id: null, total: { $sum: "$quantite" } } }
+      ]);
+
+      const key = `${sc.type}${sc.categorie.charAt(0).toUpperCase()}${sc.categorie.slice(1)}`;
+      stockLiquideParCategorie[key].quantiteVendue = vente[0]?.total || 0;
+    }
 
     res.status(200).json({
       vapes: {
-        totalProduits:nbVapes,
+        totalProduits: nbVapes,
         quantiteStock: stockVape[0]?.total || 0,
         quantiteVendue: venteVape[0]?.total || 0
       },
       liquides: {
-        totalProduits:nbLiquides,
+        totalProduits: nbLiquides,
         quantiteStock: stockLiquide[0]?.total || 0,
-        quantiteVendue: venteLiquide[0]?.total || 0
+        quantiteVendue: venteLiquide[0]?.total || 0,
+        ...stockLiquideParCategorie
       },
       accessoires: {
-        totalProduits:nbAccessoires,
+        totalProduits: nbAccessoires,
         quantiteStock: stockAccessoire[0]?.total || 0,
         quantiteVendue: venteAccessoire[0]?.total || 0
       }
     });
 
   } catch (error) {
-    console.error("Erreur getQuantitesStatistiques:", error);
-    res.status(500).json({ message: "Erreur lors de l'extraction des statistiques de quantités." });
+    console.error("Erreur getStatistiques:", error);
+    res.status(500).json({ message: "Erreur lors de l'extraction des statistiques." });
   }
 };
+
 
 exports.getVentesParSemaineFixe = async (req, res) => {
   try {
