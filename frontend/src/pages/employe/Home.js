@@ -213,14 +213,14 @@ const fetchstatistique = async () => {
                         <div class="card--data">
                             <div class="card--content">
                                 <h5 class="card--title">Liste Fruité</h5>
-                               <h1>{produits.liquides.bouteilleFruite.totalProduits}</h1>
+                               <h1>{produits.liquides?.bouteilleFruite?.totalProduits || 0}</h1>
                             </div>
                             <img src={fruiteBIcon} className="-icons" alt="Vape Icon" />
                         </div>
                        <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides.bouteilleFruite.quantiteVendue + produits.liquides.bouteilleFruite.quantiteStock}</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides.bouteilleFruite.quantiteVendue}</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides.bouteilleFruite.quantiteStock}</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides?.bouteilleFruite?.quantiteVendue || 0 + produits.liquides?.bouteilleFruite?.quantiteStock || 0}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides?.bouteilleFruite?.quantiteVendue || 0}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides?.bouteilleFruite?.quantiteStock || 0}</span>
                         </div>
                     </div>
                     <VenteLiquideBFModal show={showLiquideBFModal} liquides={liquideFruite} onHide={() => setShowLiquideBFModal(false)} OnVente={fetchLiquide}/>
@@ -229,14 +229,14 @@ const fetchstatistique = async () => {
                         <div class="card--data">
                             <div class="card--content">
                                 <h5 class="card--title">Liste Gourmand</h5>
-                                 <h1>{produits.liquides.bouteilleGourmand.totalProduits}</h1>
+                                 <h1>{produits.liquides?.bouteilleGourmand?.totalProduits || 0}</h1>
                             </div>
                             <img src={gourmandBIcon} className="-icons" alt="Liquide Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides.bouteilleGourmand.quantiteVendue + produits.liquides.bouteilleGourmand.quantiteStock}</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides.bouteilleGourmand.quantiteVendue}</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides.bouteilleGourmand.quantiteStock}</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides?.bouteilleGourmand?.quantiteVendue || 0 + produits.liquides?.bouteilleGourmand?.quantiteStock || 0}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides?.bouteilleGourmand?.quantiteVendue || 0}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides?.bouteilleGourmand?.quantiteStock || 0}</span>
                         </div>
                     </div>
                     <VenteLiquideBGModal show={showLiquideBGModal} liquides={liquideGourmand} onHide={() => setShowLiquideBGModal(false)} OnVente={fetchLiquide}/>
@@ -250,14 +250,14 @@ const fetchstatistique = async () => {
                         <div class="card--data">
                             <div class="card--content">
                                 <h5 class="card--title">Fruité</h5>
-                                 <h1>{produits.liquides.doseFruite.totalProduits}</h1>
+                                 <h1>{produits.liquides?.doseFruite?.totalProduits || 0}</h1>
                             </div>
                             <img src={fruiteIcon} className="-icons" alt="Vape Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides.doseFruite.quantiteVendue + produits.liquides.doseFruite.quantiteStock}</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides.doseFruite.quantiteVendue}</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides.doseFruite.quantiteStock}</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides?.doseFruite?.quantiteVendue || 0 + produits.liquides?.doseFruite?.quantiteStock || 0}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides?.doseFruite?.quantiteVendue || 0}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides?.doseFruite?.quantiteStock || 0}</span>
                         </div>
                     </div>
                     <VenteLiquideDFModal show={showLiquideDFModal} liquides={fruiteDose} onHide={() => setShowLiquideDFModal(false)} OnVente={fetchLiquide}/>
@@ -266,14 +266,14 @@ const fetchstatistique = async () => {
                         <div class="card--data">
                             <div class="card--content">
                                 <h5 class="card--title">Gourmand</h5>
-                                 <h1>{produits.liquides.doseGourmand.totalProduits}</h1>
+                                 <h1>{produits.liquides?.doseGourmand?.totalProduits || 0}</h1>
                             </div>
                             <img src={gourmandIcon} className="-icons" alt="Liquide Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides.doseGourmand.quantiteVendue + produits.liquides.doseGourmand.quantiteStock}</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides.doseGourmand.quantiteVendue}</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides.doseGourmand.quantiteStock}</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.liquides?.doseGourmand?.quantiteVendue || 0 + produits.liquides?.doseGourmand?.quantiteStock || 0}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.liquides?.doseGourmand?.quantiteVendue || 0}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.liquides?.doseGourmand?.quantiteStock || 0}</span>
                         </div>
                     </div>
                     <VenteLiquideDGModal show={showLiquideDGModal} liquides={gourmandDose} onHide={() => setShowLiquideDGModal(false)} OnVente={fetchLiquide}/>
