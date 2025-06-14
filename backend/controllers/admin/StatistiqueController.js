@@ -2,6 +2,7 @@ const Vape = require('../../models/VapeModel');
 const Liquide = require('../../models/LiquideModel');
 const Accessoire = require('../../models/AccessoireModel');
 const Vente = require('../../models/venteModel'); 
+const service= require('../../models/ServiceModel');
 const ProduitLiquide = require('../../models/ProduitLiquideModel');
 const Salary = require('../../models/Salary');
 const moment = require('moment');
@@ -45,10 +46,11 @@ exports.getStat = async (req, res) => {
 exports.getStatistiques = async (req, res) => {
   try {
     // Comptage total
-    const [nbVapes, nbLiquides, nbAccessoires] = await Promise.all([
+    const [nbVapes, nbLiquides, nbAccessoires, nbServices] = await Promise.all([
       Vape.countDocuments(),
       Liquide.countDocuments(),
-      Accessoire.countDocuments()
+      Accessoire.countDocuments(),
+      ServiceWorker.countDocuments(),
     ]);
 
     // Stock total
@@ -116,6 +118,9 @@ exports.getStatistiques = async (req, res) => {
         totalProduits: nbAccessoires,
         quantiteStock: stockAccessoire[0]?.total || 0,
         quantiteVendue: venteAccessoire[0]?.total || 0
+      },
+      services: {
+        totalServices: nbServices,
       }
     });
 
