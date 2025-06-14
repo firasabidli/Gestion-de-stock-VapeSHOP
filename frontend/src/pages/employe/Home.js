@@ -135,7 +135,7 @@ const fetchstatistique = async () => {
       setProduits(response.data);
       console.log(response.data);
     } catch (err) {
-      console.error('Erreur lors du chargement des accessoires', err);
+      console.error('Erreur lors du chargement des statistiques', err);
     }
   };
   useEffect(() => {

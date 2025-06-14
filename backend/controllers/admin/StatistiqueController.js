@@ -2,7 +2,7 @@ const Vape = require('../../models/VapeModel');
 const Liquide = require('../../models/LiquideModel');
 const Accessoire = require('../../models/AccessoireModel');
 const Vente = require('../../models/venteModel'); 
-const service= require('../../models/ServiceModel');
+const Service= require('../../models/ServiceModel');
 const ProduitLiquide = require('../../models/ProduitLiquideModel');
 const Salary = require('../../models/Salary');
 const moment = require('moment');
@@ -50,7 +50,7 @@ exports.getStatistiques = async (req, res) => {
       Vape.countDocuments(),
       Liquide.countDocuments(),
       Accessoire.countDocuments(),
-      ServiceWorker.countDocuments(),
+      Service.countDocuments(),
     ]);
 
     // Stock total
