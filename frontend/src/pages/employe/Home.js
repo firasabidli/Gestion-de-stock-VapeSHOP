@@ -64,7 +64,8 @@ const Home = () => {
     quantiteStock: 0,
     quantiteVendue: 0
   }
-},
+            },
+  services: {totalServices:0}
 });
 
 
@@ -193,15 +194,11 @@ const fetchstatistique = async () => {
                         <div class="card--data">
                             <div class="card--content">
                                 <h5 class="card--title">Services</h5>
-                                <h1>15</h1>
+                                <h1>{produits.services.totalServices}</h1>
                             </div>
                             <img src={serviceIcon} className="-icons" alt="service Icon" />
                         </div>
-                        <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>8%</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>11</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i>2</span>
-                        </div>
+                        
                     </div>
                 </div>
    
