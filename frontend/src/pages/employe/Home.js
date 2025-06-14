@@ -130,15 +130,15 @@ const fetchstatistique = async () => {
                     <div class="card card-1" onClick={() => setShowVapeModal(true)}>
                         <div class="card--data">
                             <div class="card--content">
-                                <h5 class="card--title">Vapes</h5>
-                                <h1>152</h1>
+                                <h5 class="card--title">Liste Vapes</h5>
+                                <h1>{produits.vapes.totalProduits}</h1>
                             </div>
                             <img src={vapeIcon} className="-icons" alt="Vape Icon" />
                         </div>
                         <div class="card--stats">
-                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>65%</span>
-                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>10</span>
-                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i>2</span>
+                            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>Total :{produits.vapes.quantiteVendue + produits.vapes.quantiteStock}</span>
+                            <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>Vendus :{produits.vapes.quantiteVendue}</span>
+                            <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i> En Stock : {produits.vapes.quantiteStock}</span>
                         </div>
                     </div>
                     <VenteVapeModal show={showVapeModal} vapes={vapes} onHide={() => setShowVapeModal(false)} OnVente={fetchVapes} />
