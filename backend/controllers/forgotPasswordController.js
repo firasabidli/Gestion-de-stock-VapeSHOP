@@ -17,8 +17,9 @@ const transporter = nodemailer.createTransport({
 
 module.exports = {
   // Step 1: Vérifier email et envoyer code
-  async step1(req, res) {
-    const { email } = req.body;
+ async step1(req, res) {
+  const { email } = req.body;
+  try {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ error: "Email introuvable." });
 
@@ -36,7 +37,13 @@ module.exports = {
 
     const token_code = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '15m' });
     res.json({ message: "Code envoyé", token: token_code });
-  },
+
+  } catch (err) {
+    console.error("Erreur dans step1:", err); // 👈 ajoutez ceci
+    res.status(500).json({ error: "Erreur serveur, veuillez réessayer." });
+  }
+},
+
 
   // Step 2: Vérifier le code
   async step2(req, res) {
