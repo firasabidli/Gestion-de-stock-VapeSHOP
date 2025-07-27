@@ -23,10 +23,15 @@ module.exports = {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ error: "Email introuvable." });
 
+    console.log("✅ Utilisateur trouvé:", user.email);
+
     const code = Math.floor(100000 + Math.random() * 900000).toString();
 
     await PasswordResetCode.deleteMany({ email });
+    console.log("✅ Anciens codes supprimés");
+
     await PasswordResetCode.create({ email, code });
+    console.log("✅ Nouveau code enregistré:", code);
 
     await transporter.sendMail({
       from: '"Support" <raedtouati2550@gmail.com>',
@@ -34,15 +39,19 @@ module.exports = {
       subject: 'Code de réinitialisation',
       html: `<p>Bonjour ${user.name},<br>Voici votre code : <b>${code}</b></p>`
     });
+    console.log("✅ Email envoyé à", email);
 
     const token_code = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '15m' });
+    console.log("✅ Token JWT généré");
+
     res.json({ message: "Code envoyé", token: token_code });
 
   } catch (err) {
-    console.error("Erreur dans step1:", err); // 👈 ajoutez ceci
+    console.error("❌ Erreur dans step1:", err); // 👈 ça nous dira où ça plante
     res.status(500).json({ error: "Erreur serveur, veuillez réessayer." });
   }
 },
+
 
 
   // Step 2: Vérifier le code
